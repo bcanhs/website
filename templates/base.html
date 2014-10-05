@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">NHS Tutor</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+        {% if signed_in %}
+        <ul class="nav navbar-nav">
+            <li><a href="/add">Add a session</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">Sign Out</a></li>
+        </ul>
+        {% else %}
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/signin">Sign In</a></li>
+        </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+	</body>
+</html>
