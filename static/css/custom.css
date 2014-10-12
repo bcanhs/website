@@ -24,3 +24,13 @@ h1{
 .navbar-right{
 	margin-right: 2%;
 }
+.spacer{
+	margin-top: 13%;
+}
+.form_label{
+	margin-top: 10px;
+}
+.error{
+	font-size: 25px;
+	color:#e51c23;
+}

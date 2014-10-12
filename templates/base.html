@@ -25,14 +25,13 @@
             <li><a href="/logout">Sign Out</a></li>
         </ul>
         {% else %}
-        <ul class="nav navbar-nav">
-        </ul>
+        <ul class="nav navbar-nav"></ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/signup/tutor">Sign Up</a></li>
             <li><a href="/signin">Sign In</a></li>
         </ul>
-        </div>
         {% endif %}
+        </div>
     </div>
     {% block content %}
     {% endblock %}

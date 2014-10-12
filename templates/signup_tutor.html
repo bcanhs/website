@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Tutor Signup{% endblock %}
+{% block content %}
+<div class="container spacer center">
+	<h1>Tutor Sign Up</h1>
+	<br>
+	<form action="/signup/tutor" method="post">
+		{% if full_name_error %}<div class="error">{{full_name_error}}</div>{% endif %}
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Full Name</div>
+			<div class="col-md-2 {% if full_name_error %}has-error{% endif %}">
+				<input type="text" class="form-control" name='full_name' placeholder="Paras Modi" {% if variables %}value="{{variables['full_name']}}"{% endif %}>
+			</div>
+			<div class="col-md-6"></div>
+		</div><br>
+		{% if username_error %}<div class="error">{{username_error}}</div>{% endif %}
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Username</div>
+			<div class="col-md-2 {% if username_error %}has-error{% endif %}">
+				<input type="text" class="form-control" name='username' placeholder="parmod" {% if variables %}value="{{variables['username']}}"{% endif %}>
+			</div>
+			<div class="col-md-6"></div>
+		</div><br>
+		{% if password_error %}<div class="error">{{password_error}}</div>{% endif %}
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Password</div>
+			<div class="col-md-2 {% if password_error %}has-error{% endif %}">
+				<input type="password" class="form-control" name='password' placeholder="password">
+			</div>
+			<div class="col-md-6"></div>
+		</div><br>
+		{% if password_confirm_error %}<div class="error">{{password_confirm_error}}</div>{% endif %}
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Re-type password</div>
+			<div class="col-md-2 {% if password_confirm_error %}has-error{% endif %}">
+				<input type="password" class="form-control" name='password_confirm' placeholder="re-type password">
+			</div>
+			<div class="col-md-6"></div>
+		</div><br>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-lg btn-primary">Sign Up!</button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</form>
+</div>
+{% endblock %}

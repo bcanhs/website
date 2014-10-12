@@ -6,13 +6,21 @@
 		<div class="header">
 			<h1>NHS Tutor</h1>
 			<br>
-			<div class="row">
+			<div class="row center">
+				{% if signed_in %}
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a href="/add"><button class="btn btn-success btn-lg">Add a tutor session</button></a>
+				</div>
+				<div class="col-md-4"></div>
+				{% else %}
 				<div class="col-md-6">
-					<button class="btn btn-success btn-lg">Sign up as a tutor</button>
+					<a href="/signup/tutor"><button class="btn btn-success btn-lg">Sign up as a tutor</button></a>
 				</div>
 				<div class="col-md-6">
-					<button class="btn btn-primary btn-lg">Sign up as a student</button>
+					<a href='/signup/student'><button class="btn btn-primary btn-lg">Sign up as a student</button></a>
 				</div>
+				{% endif %}
 			</div>
 			<br>
 		</div>
