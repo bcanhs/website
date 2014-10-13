@@ -11,6 +11,7 @@ app.secret_key = APP_SECRET
 client = MongoClient(MONGO_CRED)
 db = client.get_default_database()
 users = db.users
+tutor_sessions = db.tutor_sessions
 
 def session_login(username, first_name):
 	session['username'] = username
@@ -30,7 +31,27 @@ def logged_in():
 @app.route('/')
 def hello():
 	return render_template("index.html",signed_in=logged_in())
-
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+	if request.method == 'POST':
+		sessions = {}
+		for field in request.form:
+			value = request.form.get(field)
+			if value == None:
+					return render_template('add.html',error='Cannot leave subject name blank')
+			if SUBJECT_RE.match(field) and value not in sessions:
+				number = field.replace('subject','')
+				sessions[value] = {'days':[request.form.get('day'+number)],'mods':[request.form.get('mods'+number)]}
+			elif SUBJECT_RE.match(field) and value in sessions:
+				number = field.replace('subject','')
+				sessions[value]['days'].append(request.form.get('day'+number))
+				sessions[value]['mods'].append(request.form.get('mod'+number))
+		for course in sessions:
+			tutor_sessions.insert({'session':course,'mods':sessions[course]['mods'],'day':sessions[course]['days'],'tutor':session.get('name'),'tutor_username':session.get('username'),'enrolled':[]})
+		return redirect('/')
+	if not logged_in():
+		return redirect('/signin')
+	return render_template('add.html')
 @app.route('/signup/tutor', methods=['GET', 'POST'])
 def tutor():
 	if request.method == 'POST':
@@ -72,7 +93,10 @@ def tutor():
 	return render_template('signup_tutor.html')
 @app.route('/signup/student', methods=['GET', 'POST'])
 def student():
-	return render_template('signup_student.html')
+	all_sessions =[]
+	for data in tutor_sessions.find():
+		all_sessions.append(data)
+	return render_template('signup_student.html', all_sessions=all_sessions)
 @app.route('/signin', methods=['GET', 'POST'])
 def sign_in():
 	if request.method == 'POST':

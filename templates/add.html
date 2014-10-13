@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Add A Session{% endblock %}
+{% block content %}
+<div class="container spacer">
+	<h1>Add a tutoring session</h1>
+	<div class="error">{{error}}</div>
+	<form action="/add" method="post">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Subject</div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" name='subject1' placeholder="AP Computer Science">
+			</div>
+		</div><br>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Select Day</div>
+			<div class="col-md-2">
+				<select class="form-control" name='day1'>
+					<option value="monday">Monday</option>
+					<option value="tuesday">Tuesday</option>
+					<option value="wednesday">Wednesday</option>
+					<option value="thursday">Thursday</option>
+					<option value="friday">Friday</option>
+				</select>
+			</div>
+		</div><br>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Mods</div>
+			<div class="col-md-2">
+				<select class="form-control" name='mods1'>
+					<option value="1-3">1-3</option>
+					<option value="4-6">4-6</option>
+					<option value="7-9">7-9</option>
+					<option value="10-12">10-12</option>
+					<option value="13-15">13-15</option>
+					<option value="16-18">16-18</option>
+					<option value="19-21">19-21</option>
+					<option value="22-24">22-24</option>
+					<option value="24-27">24-27</option>
+				</select>
+			</div>
+		</div><br>
+		<div class="extra"></div>
+		<div class="row center">
+			<div class="col-md-3"></div>
+			<div class="col-md-3">
+				<button type="submit" class="btn btn-lg btn-primary">Submit Session</button>
+			</div>
+			<div class="col-md-3">
+				<div onclick="add()" class="btn btn-lg btn-primary">Add another session</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	var number = 2;
+	function add () {
+		$('.extra').append('<div class="row"> \
+			<div class="col-md-4"></div> \
+			<div class="col-md-2 form_label">Subject</div> \
+			<div class="col-md-2"> \
+				<input type="text" class="form-control" name="subject'+number+'" placeholder="AP Computer Science"> \
+			</div> \
+		</div><br> \
+		<div class="row"> \
+			<div class="col-md-4"></div> \
+			<div class="col-md-2 form_label">Select Day</div> \
+			<div class="col-md-2"> \
+				<select class="form-control" name="day'+number+'"> \
+					<option value="monday">Monday</option> \
+					<option value="tuesday">Tuesday</option> \
+					<option value="wednesday">Wednesday</option> \
+					<option value="thursday">Thursday</option> \
+					<option value="friday">Friday</option> \
+				</select> \
+			</div> \
+		</div><br> \
+		<div class="row"> \
+			<div class="col-md-4"></div> \
+			<div class="col-md-2 form_label">Mods</div> \
+			<div class="col-md-2"> \
+				<select class="form-control" name="mods'+number+'"> \
+					<option value="1">1-3</option> \
+					<option value="2">4-6</option> \
+					<option value="3">7-9</option> \
+					<option value="4">10-12</option> \
+					<option value="5">13-15</option> \
+					<option value="6">16-18</option> \
+					<option value="7">19-21</option> \
+					<option value="8">22-24</option> \
+					<option value="9">24-27</option> \
+				</select> \
+			</div> \
+		</div><br>');
+		number +=1;
+	}
+</script>
+{% endblock %}
