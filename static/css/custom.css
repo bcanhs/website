@@ -33,4 +33,10 @@ h1{
 .error{
 	font-size: 25px;
 	color:#e51c23;
+	text-align: center;
+}
+table, th, td {
+	border: 1px solid #2c3e50 !important;
+	color: black !important;
+	text-align: center;
 }

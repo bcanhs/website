@@ -36,22 +36,53 @@ def add():
 	if request.method == 'POST':
 		sessions = {}
 		for field in request.form:
-			value = request.form.get(field)
-			if value == None:
-					return render_template('add.html',error='Cannot leave subject name blank')
+			value = request.form.get(field).strip()
+			if value != '' and MODS_NAME_RE.match(field):
+				if not(MODS_RE.match(value)):
+					return render_template('add.html',error='Please enter mods correctly')
+			if SUBJECT_RE.match(field) and value == None:
+				return render_template('add.html',error='Cannot leave any field blank')
 			if SUBJECT_RE.match(field) and value not in sessions:
 				number = field.replace('subject','')
-				sessions[value] = {'days':[request.form.get('day'+number)],'mods':[request.form.get('mods'+number)]}
-			elif SUBJECT_RE.match(field) and value in sessions:
-				number = field.replace('subject','')
-				sessions[value]['days'].append(request.form.get('day'+number))
-				sessions[value]['mods'].append(request.form.get('mod'+number))
+				sessions[value] = {'monday':request.form.get('mods_monday_'+number),'tuesday':request.form.get('mods_tuesday_'+number),
+								'wednesday':request.form.get('mods_wednesday_'+number), 'thursday':request.form.get('mods_thursday_'+number),
+								'friday':request.form.get('mods_friday_'+number)}
 		for course in sessions:
-			tutor_sessions.insert({'session':course,'mods':sessions[course]['mods'],'day':sessions[course]['days'],'tutor':session.get('name'),'tutor_username':session.get('username'),'enrolled':[]})
+			tutor_sessions.insert({'session':course,'monday':sessions[course]['monday'],'tuesday':sessions[course]['tuesday'],
+					'wednesday':sessions[course]['wednesday'],'thursday':sessions[course]['thursday'],'friday':sessions[course]['friday'],
+					'tutor':session.get('name'),'tutor_username':session.get('username')})
 		return redirect('/')
 	if not logged_in():
 		return redirect('/signin')
-	return render_template('add.html')
+	return render_template('add.html',signed_in=logged_in())
+@app.route('/view', methods=['GET', 'POST'])
+def view():
+	if request.method == 'POST':
+		subject = request.form.get('subject')
+		return redirect('/view/'+subject)
+	return render_template('view.html',signed_in=logged_in())
+@app.route('/view/<subject>/')
+def view_subject(subject):
+	if subject == None:
+		return redirect('/')
+	subject_data = tutor_sessions.find({'session':subject})
+	monday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	tuesday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	wednesday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	thursday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	friday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	for ses in subject_data:
+		if ses['monday'] != '':
+			monday[ses['monday']] = ses['tutor']
+		if ses['tuesday'] != '':
+			tuesday[ses['tuesday']] = ses['tutor']
+		if ses['wednesday'] != '':
+			wednesday[ses['wednesday']] = ses['tutor']
+		if ses['thursday'] != '':
+			thursday[ses['thursday']] = ses['tutor']
+		if ses['friday'] != '':
+			friday[ses['friday']] = ses['tutor']
+	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,wednesday=wednesday,thursday=thursday,friday=friday)
 @app.route('/signup/tutor', methods=['GET', 'POST'])
 def tutor():
 	if request.method == 'POST':
@@ -90,13 +121,7 @@ def tutor():
 		return redirect('/')
 	if logged_in():
 		return redirect('/')
-	return render_template('signup_tutor.html')
-@app.route('/signup/student', methods=['GET', 'POST'])
-def student():
-	all_sessions =[]
-	for data in tutor_sessions.find():
-		all_sessions.append(data)
-	return render_template('signup_student.html', all_sessions=all_sessions)
+	return render_template('signup_tutor.html',signed_in=logged_in())
 @app.route('/signin', methods=['GET', 'POST'])
 def sign_in():
 	if request.method == 'POST':
@@ -117,7 +142,7 @@ def sign_in():
 		return redirect('/')
 	if logged_in():
 		return redirect('/')
-	return render_template('sign_in.html')
+	return render_template('sign_in.html',signed_in=logged_in())
 @app.route('/logout')
 def sign_out():
 	session_logout()

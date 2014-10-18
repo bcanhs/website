@@ -9,6 +9,8 @@ USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 PASSWORD_RE = re.compile(r"^.{3,20}$")
 EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
 SUBJECT_RE = re.compile(r"subject\d")
+MODS_RE = re.compile(r"\d+-\d+")
+MODS_NAME_RE = re.compile(r"mods_[mondaytuesdaywednesdaythursdayfriday]*_\d")
 
 def valid_username(username):
 	if USER_RE.match(username):

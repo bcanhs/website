@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container center spacer">
+	<h1>Pick a Schedule to View</h1><br>
+	<form action="/view" method="post">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+				<select class="form-control" name='subject'>
+					<option value="Math">Math</option>
+					<option value="Litterature">Litterature</option>
+					<option value="History">History</option>
+					<option value="French">Language (French)</option>
+					<option value="Spanish">Language (Spanish)</option>
+					<option value="Mandarin">Language (Mandarin)</option>
+					<option value="Chemistry">Chemistry</option>
+					<option value="Biology">Biology</option>
+					<option value="Physics">Physics</option>
+					<option value="AMST">Academy Specific (AMST)</option>
+					<option value="AAST">Academy Specific (AAST)</option>
+					<option value="AEDT">Academy Specific (AEDT)</option>
+					<option value="ATCS">Academy Specific (ATCS)</option>
+					<option value="ABF">Academy Specific (ABF)</option>
+					<option value="ACAHA">Academy Specific (ACAHA)</option>
+					<option value="AVPA-">Academy Specific (AVPA-T)</option>
+					<option value="AVPA-M">Academy Specific (AVPA-M)</option>
+					<option value="AVPA-V">Academy Specific (AVPA-V)</option>
+				</select>
+		</div>
+		<div class="col-md-4"></div>
+	</div><br>
+	<div class="row center">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<button class="btn btn-lg btn-primary">View</button>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}{{subject}} Schedule{% endblock %}
+{% block content %}
+<div class="container spacer center">
+	<h1>{{subject}} Schedule</h1>
+	<table width="100%;">
+		<tr>
+			<td></td>
+			<td>Monday</td>
+			<td>Tuesday</td>
+			<td>Wednesday</td>
+			<td>Thursday</td>
+			<td>Friday</td>
+		</tr>
+		<tr>
+			<td>1-3</td>
+			<td>{{monday['1-3'] |replace("[]", "")}}</td>
+			<td>{{tuesday['1-3'] |replace("[]", "")}}</td>
+			<td>{{wednesday['1-3'] |replace("[]", "")}}</td>
+			<td>{{thursday['1-3'] |replace("[]", "")}}</td>
+			<td>{{friday['1-3'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>4-6</td>
+			<td>{{monday['4-6'] |replace("[]", "")}}</td>
+			<td>{{tuesday['4-6'] |replace("[]", "")}}</td>
+			<td>{{wednesday['4-6'] |replace("[]", "")}}</td>
+			<td>{{thursday['4-6'] |replace("[]", "")}}</td>
+			<td>{{friday['4-6'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>7-9</td>
+			<td>{{monday['7-9'] |replace("[]", "")}}</td>
+			<td>{{tuesday['7-9'] |replace("[]", "")}}</td>
+			<td>{{wednesday['7-9'] |replace("[]", "")}}</td>
+			<td>{{thursday['7-9'] |replace("[]", "")}}</td>
+			<td>{{friday['7-9'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>10-12</td>
+			<td>{{monday['10-12'] |replace("[]", "")}}</td>
+			<td>{{tuesday['10-12'] |replace("[]", "")}}</td>
+			<td>{{wednesday['10-12'] |replace("[]", "")}}</td>
+			<td>{{thursday['10-12'] |replace("[]", "")}}</td>
+			<td>{{friday['10-12'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>13-15</td>
+			<td>{{monday['13-15'] |replace("[]", "")}}</td>
+			<td>{{tuesday['13-15'] |replace("[]", "")}}</td>
+			<td>{{wednesday['13-15'] |replace("[]", "")}}</td>
+			<td>{{thursday['13-15'] |replace("[]", "")}}</td>
+			<td>{{friday['13-15'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>16-18</td>
+			<td>{{monday['16-18'] |replace("[]", "")}}</td>
+			<td>{{tuesday['16-18'] |replace("[]", "")}}</td>
+			<td>{{wednesday['16-18'] |replace("[]", "")}}</td>
+			<td>{{thursday['16-18'] |replace("[]", "")}}</td>
+			<td>{{friday['16-18'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>19-21</td>
+			<td>{{monday['19-21'] |replace("[]", "")}}</td>
+			<td>{{tuesday['19-21'] |replace("[]", "")}}</td>
+			<td>{{wednesday['19-21'] |replace("[]", "")}}</td>
+			<td>{{thursday['19-21'] |replace("[]", "")}}</td>
+			<td>{{friday['19-21'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>22-24</td>
+			<td>{{monday['22-24'] |replace("[]", "")}}</td>
+			<td>{{tuesday['22-24'] |replace("[]", "")}}</td>
+			<td>{{wednesday['22-24'] |replace("[]", "")}}</td>
+			<td>{{thursday['22-24'] |replace("[]", "")}}</td>
+			<td>{{friday['22-24'] |replace("[]", "")}}</td>
+		</tr>
+		<tr>
+			<td>25-27</td>
+			<td>{{monday['25-27'] |replace("[]", "")}}</td>
+			<td>{{tuesday['25-27'] |replace("[]", "")}}</td>
+			<td>{{wednesday['25-27'] |replace("[]", "")}}</td>
+			<td>{{thursday['25-27'] |replace("[]", "")}}</td>
+			<td>{{friday['25-27'] |replace("[]", "")}}</td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
