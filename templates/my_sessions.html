@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}My Sessions{% endblock %}
+{% block content %}
+<div class="container center spacer">
+	{% for session in data %}
+	<div class="row center">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<h2>Subject: {{session['session']}}</h2>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<h5>Monday</h5>
+					<p>{{session['monday']}}</p>
+				</div>
+				<div class="col-md-2">
+					<h5>Tuesday</h5>
+					<p>{{session['tuesday']}}</p>
+				</div>
+				<div class="col-md-2">
+					<h5>Wednesday</h5>
+					<p>{{session['wednesday']}}</p>
+				</div>
+				<div class="col-md-2">
+					<h5>Thursday</h5>
+					<p>{{session['thursday']}}</p>
+				</div>
+				<div class="col-md-2">
+					<h5>Friday</h5>
+					<p>{{session['friday']}}</p>
+				</div>
+			</div>
+	</div><br>
+	<div class="center">
+		<form method="post" action="/delete">
+			<input value="{{session}}" name='data' type="hidden">
+			<button type="submit" class="btn btn-lg btn-danger">Delete Session</button>
+		</form>
+	</div>
+	<hr>
+	{% endfor %}
+</div>
+{% endblock %}

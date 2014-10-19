@@ -4,6 +4,7 @@ from pymongo import *
 import os
 from secret import *
 from utils import *
+import ast
 
 app = Flask(__name__)
 
@@ -73,16 +74,41 @@ def view_subject(subject):
 	friday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
 	for ses in subject_data:
 		if ses['monday'] != '':
-			monday[ses['monday']] = ses['tutor']
+			monday[ses['monday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
 		if ses['tuesday'] != '':
-			tuesday[ses['tuesday']] = ses['tutor']
+			tuesday[ses['tuesday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
 		if ses['wednesday'] != '':
-			wednesday[ses['wednesday']] = ses['tutor']
+			wednesday[ses['wednesday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
 		if ses['thursday'] != '':
-			thursday[ses['thursday']] = ses['tutor']
+			thursday[ses['thursday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
 		if ses['friday'] != '':
-			friday[ses['friday']] = ses['tutor']
-	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,wednesday=wednesday,thursday=thursday,friday=friday)
+			friday[ses['friday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
+	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,
+			wednesday=wednesday,thursday=thursday,friday=friday)
+@app.route('/my-sessions', methods=['GET', 'POST'])
+def my_ses():
+	if not(logged_in()):
+		return redirect('/')
+	query = tutor_sessions.find({'tutor':session.get('name'),'tutor_username':session.get('username')})
+	data = []
+	for ses in query:
+		del ses['_id']
+		data.append(ses)
+	return render_template('my_sessions.html',data=data,signed_in=logged_in())
+@app.route('/delete', methods=['GET', 'POST'])
+def delete_ses():
+	if request.method == 'POST':
+		try:
+			data = ast.literal_eval(request.form.get('data'))
+		except Exception, e:
+			return redirect('/')
+		if not(data['tutor'] == session.get('name')) or not(data['tutor_username'] == session.get('username')) or not(session.get('admin')):
+			return redirect('/')
+		tutor_sessions.remove(data)
+		if session.get('admin'):
+			return redirect('/admin')
+		return redirect('/my-sessions')
+	return redirect('/my-sessions')
 @app.route('/signup/tutor', methods=['GET', 'POST'])
 def tutor():
 	if request.method == 'POST':
@@ -147,6 +173,27 @@ def sign_in():
 def sign_out():
 	session_logout()
 	return redirect('/')
+@app.route('/admin',methods=['GET', 'POST'])
+def admin():
+	if request.method == 'POST':
+		password = request.form.get('password')
+		if password == 'parasmadethis':
+			session['admin'] = True
+			query = tutor_sessions.find({})
+			data = []
+			for ses in query:
+				del ses['_id']
+				data.append(ses)
+			return render_template('all_sessions.html',signed_in=logged_in(),data=data)
+		return redirect('/admin')
+	if session.get('admin'):
+		query = tutor_sessions.find({})
+		data = []
+		for ses in query:
+			del ses['_id']
+			data.append(ses)
+		return render_template('all_sessions.html',signed_in=logged_in(),data=data)
+	return render_template('admin_pass.html',signed_in=logged_in())
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)

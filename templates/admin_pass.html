@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container center spacer">
+	<h1>Enter admin password</h1><br>
+	<form action="/admin" method="post">
+	<div class="row center">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input name="password" class="form-control" type="password" placeholder='password'>
+		</div>
+		<div class="col-md-4"></div>
+	</div><br>
+	<div class="row center">
+		<button class="btn btn-lg btn-success" type="submit">Enter</button>
+	</div>
+	</form>
+</div>
+{% endblock %}
