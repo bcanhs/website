@@ -102,7 +102,7 @@ def delete_ses():
 			data = ast.literal_eval(request.form.get('data'))
 		except Exception, e:
 			return redirect('/')
-		if not(data['tutor'] == session.get('name')) or not(data['tutor_username'] == session.get('username')) or not(session.get('admin')):
+		if not(data['tutor_username'] == session.get('username')) and not(session.get('admin')):
 			return redirect('/')
 		tutor_sessions.remove(data)
 		if session.get('admin'):
@@ -165,10 +165,10 @@ def sign_in():
 		if not(valid_pw(username,password,user.get('password'))):
 			return render_template('signin.html', error="Invalid username and password.", username=username)
 		session_login(username, user.get('name'))
-		return redirect('/')
+		return redirect('/add')
 	if logged_in():
 		return redirect('/')
-	return render_template('sign_in.html',signed_in=logged_in())
+	return render_template('signin.html',signed_in=logged_in())
 @app.route('/logout')
 def sign_out():
 	session_logout()
