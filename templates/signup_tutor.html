@@ -41,6 +41,15 @@
 			</div>
 			<div class="col-md-6"></div>
 		</div><br>
+		{% if key_error %}<div class="error">{{key_error}}</div>{% endif %}
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-2 form_label">Secret Key</div>
+			<div class="col-md-2 {% if key_error %}has-error{% endif %}">
+				<input type="password" class="form-control" name='key' placeholder="secret">
+			</div>
+			<div class="col-md-6"></div>
+		</div><br>
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">

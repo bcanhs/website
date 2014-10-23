@@ -118,6 +118,7 @@ def tutor():
 			username = username.split("@bergen.org")[0]
 		password = request.form.get('password')
 		password_confirm = request.form.get('password_confirm')
+		key = request.form.get('key')
 		variables = {"full_name" : full_name, "username" : username}
 		if not full_name:
 			return render_template('signup_tutor.html', variables=variables, full_name_error="Please enter a name.")
@@ -133,6 +134,8 @@ def tutor():
 			return render_template('signup_tutor.html', variables=variables, password_error="Enter a valid password.")
 		if password != password_confirm:
 			return render_template('signup_tutor.html', variables=variables, password_confirm_error="Passwords must match")
+		if key != 'NHStutor':
+			return render_template('signup_tutor.html', variables=variables, key_error="Enter the correct key")
 		result = users.find_one({"username":username})
 		if not result is None:
 			if valid_pw(username, password, result.get('password')):
