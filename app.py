@@ -176,6 +176,22 @@ def sign_in():
 def sign_out():
 	session_logout()
 	return redirect('/')
+@app.errorhandler(404)
+def broken(error):
+	return render_template('404.html', signed_in=logged_in()), 404
+
+@app.route('/404')
+def forohfor():
+	return render_template('404.html', signed_in=logged_in()), 404
+
+@app.errorhandler(500)
+def five(error):
+	return render_template('500.html'), 500
+
+@app.route('/500')
+def fivehundred():
+	return render_template('500.html'), 500
+
 @app.route('/admin',methods=['GET', 'POST'])
 def admin():
 	if request.method == 'POST':
