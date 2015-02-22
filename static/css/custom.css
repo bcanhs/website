@@ -2,27 +2,18 @@ h1{
 	text-align: center;
 	font-size: 70px;
 }
-.background{
-	background-image: url('../img/front-img.jpg');
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-}
-.header{
-	padding: 0px -10px 0px;
-	background-color: #ffffff;
-	margin-top: 25%;
-	width: 55%;
-	display: inline-block;
-}
-.header h1{
-	color: #3498db;
-}
 .center{
 	text-align: center;
 }
 .navbar-right{
 	margin-right: 2%;
+}
+.navbar-header{
+	font-family: Arial;
+	font-weight: bold;
+}
+.navbar-default{
+	background-color: #0A0A0A;
 }
 .spacer{
 	margin-top: 13%;
@@ -53,6 +44,33 @@ td{
 	margin-right: 10px;
 	float: left;
 }
+@media screen and (max-width: 767px) {
+    .logo {
+        height: 40px;
+        width: 30px;
+    }
+}
 table a:not(.btn), .table a:not(.btn) {
 	text-decoration: none;
+}
+.carousel,
+.item,
+.active {
+    height: 100%;
+}
+.carousel-inner {
+}
+.fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.carousel-caption{
+	top: 50px;
+	left: 15%;
+	right: 15%;
 }

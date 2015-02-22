@@ -1,29 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="background">
-	<div class="container center">
-		<div class="header">
-			<h1>NHS Tutor</h1>
-			<br>
-			<div class="row center">
-				{% if signed_in %}
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<a href="/add"><button class="btn btn-success btn-lg">Add a tutor session</button></a>
-				</div>
-				<div class="col-md-4"></div>
-				{% else %}
-				<div class="col-md-6">
-					<a href="/signup/tutor"><button class="btn btn-success btn-lg">Sign up as a tutor</button></a>
-				</div>
-				<div class="col-md-6">
-					<a href='/view'><button class="btn btn-success btn-lg">View Sessions</button></a>
-				</div>
-				{% endif %}
-			</div>
-			<br>
-		</div>
-	</div>
-</div>
+<header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+<!--         <li data-target="#myCarousel" data-slide-to="2"></li>
+ -->    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('/static/img/slideshow/1.JPG');"></div>
+            <div class="carousel-caption">
+                <h1>Bergen County Academies <b>National Honor Society</b></h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('/static/img/slideshow/2.JPG');"></div>
+            <div class="carousel-caption">
+                <h2>Induction Pictures Coming Soon</h2>
+            </div>
+        </div>
+<!--         <div class="item">
+            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+            <div class="carousel-caption">
+                <h2>Caption 3</h2>
+            </div>
+        </div> -->
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</header>
+
+<!-- Script to Activate the Carousel | Set the interval to change the duration of each slide -->
+<script>$('.carousel').carousel({interval: 4500})</script> 
 {% endblock %}
