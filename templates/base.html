@@ -1,22 +1,26 @@
 <html lang="en">
 	<head>
 		<title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/png" href="/static/img/logo.png" />
 	</head>
 	<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">NHS Tutor</a>
+          <a class="navbar-brand" href="/"><img class="logo" src="/static/img/logo.png"><b>BCA NHS</b></a>
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
+
+
+
         {% if signed_in %}
         <ul class="nav navbar-nav">
             <li><a href="/add">Add a session</a></li>
@@ -35,6 +39,10 @@
             <li><a href="/signin">Sign In</a></li>
         </ul>
         {% endif %}
+
+
+
+        
         </div>
     </div>
     {% block content %}

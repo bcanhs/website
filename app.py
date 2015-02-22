@@ -32,6 +32,7 @@ def logged_in():
 @app.route('/')
 def hello():
 	return render_template("index.html",signed_in=logged_in())
+
 @app.route('/add', methods=['GET', 'POST'])
 def add():
 	if request.method == 'POST':
@@ -56,12 +57,14 @@ def add():
 	if not logged_in():
 		return redirect('/signin')
 	return render_template('add.html',signed_in=logged_in())
+
 @app.route('/view', methods=['GET', 'POST'])
 def view():
 	if request.method == 'POST':
 		subject = request.form.get('subject')
 		return redirect('/view/'+subject)
 	return render_template('view.html',signed_in=logged_in())
+
 @app.route('/view/<subject>/')
 def view_subject(subject):
 	if subject == None:
@@ -85,6 +88,7 @@ def view_subject(subject):
 			friday[ses['friday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
 	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,
 			wednesday=wednesday,thursday=thursday,friday=friday)
+
 @app.route('/my-sessions', methods=['GET', 'POST'])
 def my_ses():
 	if not(logged_in()):
@@ -95,6 +99,7 @@ def my_ses():
 		del ses['_id']
 		data.append(ses)
 	return render_template('my_sessions.html',data=data,signed_in=logged_in())
+
 @app.route('/delete', methods=['GET', 'POST'])
 def delete_ses():
 	if request.method == 'POST':
@@ -109,6 +114,7 @@ def delete_ses():
 			return redirect('/admin')
 		return redirect('/my-sessions')
 	return redirect('/my-sessions')
+
 @app.route('/signup/tutor', methods=['GET', 'POST'])
 def tutor():
 	if request.method == 'POST':
@@ -151,6 +157,7 @@ def tutor():
 	if logged_in():
 		return redirect('/')
 	return render_template('signup_tutor.html',signed_in=logged_in())
+
 @app.route('/signin', methods=['GET', 'POST'])
 def sign_in():
 	if request.method == 'POST':
@@ -172,10 +179,12 @@ def sign_in():
 	if logged_in():
 		return redirect('/')
 	return render_template('signin.html',signed_in=logged_in())
+
 @app.route('/logout')
 def sign_out():
 	session_logout()
 	return redirect('/')
+
 @app.errorhandler(404)
 def broken(error):
 	return render_template('404.html', signed_in=logged_in()), 404
@@ -196,7 +205,7 @@ def fivehundred():
 def admin():
 	if request.method == 'POST':
 		password = request.form.get('password')
-		if password == 'parasmadethis':
+		if password == 'bcanhs12':
 			session['admin'] = True
 			query = tutor_sessions.find({})
 			data = []
@@ -213,6 +222,9 @@ def admin():
 			data.append(ses)
 		return render_template('all_sessions.html',signed_in=logged_in(),data=data)
 	return render_template('admin_pass.html',signed_in=logged_in())
+
+
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)

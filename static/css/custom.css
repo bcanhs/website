@@ -46,3 +46,13 @@ td{
 	min-width: 60px;
 	max-width: 175px; !important
 }
+.logo{
+	height: 70px;
+	width: 60px;
+	margin-top: -10px;
+	margin-right: 10px;
+	float: left;
+}
+table a:not(.btn), .table a:not(.btn) {
+	text-decoration: none;
+}
