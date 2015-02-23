@@ -46,13 +46,13 @@ td{
 	margin-right: 10px;
 	float: left;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px){
     .logo {
         height: 40px;
         width: 30px;
     }
 }
-table a:not(.btn), .table a:not(.btn) {
+table a:not(.btn), .table a:not(.btn){
 	text-decoration: none;
 }
 .carousel,
@@ -60,9 +60,9 @@ table a:not(.btn), .table a:not(.btn) {
 .active {
     height: 100%;
 }
-.carousel-inner {
+.carousel-inner{
 }
-.fill {
+.fill{
     width: 100%;
     height: 100%;
     background-position: center;
@@ -73,6 +73,24 @@ table a:not(.btn), .table a:not(.btn) {
 }
 .carousel-caption{
 	top: 50px;
-	left: 15%;
-	right: 15%;
+	left: 10%;
+	right: 10%;
+	text-shadow: 10px 10px 10px black;
+}
+.carousel-caption a{
+	color: #FB0;
+}
+.carousel-caption a:hover{
+	text-decoration: none;
+	font-weight: lighter;
+	color: #fff;
+}
+.carousel-caption h1{
+	color: #FB0;
+}
+.carousel-caption h2{
+	font-weight: bold;
+}
+.white{
+	color: #fff;
 }

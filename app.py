@@ -223,11 +223,33 @@ def admin():
 		return render_template('all_sessions.html',signed_in=logged_in(),data=data)
 	return render_template('admin_pass.html',signed_in=logged_in())
 
-''' Static Pages '''
 @app.route('/points')
 def points():
 	return render_template('points.html')
 
+@app.route('/officers')
+def officers():
+	return render_template('officers.html')
+
+@app.route('/meeting-minutes')
+def minutes():
+	return render_template('minutes.html')
+
+@app.route('/officer-videos')
+def officerVideos():
+	return render_template('officer-videos.html')
+
+@app.route('/requirements')
+def requirements():
+	return render_template('requirements.html')
+
+@app.route('/pillars')
+def pillars():
+	return render_template('pillars.html')
+
+@app.route('/bylaws')
+def bylaws():
+	return render_template('bylaws.html')
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
