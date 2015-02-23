@@ -186,15 +186,15 @@ def sign_out():
 	return redirect('/')
 
 @app.errorhandler(404)
-def broken(error):
+def missing(error):
 	return render_template('404.html', signed_in=logged_in()), 404
 
 @app.route('/404')
-def forohfor():
+def fourofour():
 	return render_template('404.html', signed_in=logged_in()), 404
 
 @app.errorhandler(500)
-def five(error):
+def broken(error):
 	return render_template('500.html'), 500
 
 @app.route('/500')
@@ -223,6 +223,10 @@ def admin():
 		return render_template('all_sessions.html',signed_in=logged_in(),data=data)
 	return render_template('admin_pass.html',signed_in=logged_in())
 
+''' Static Pages '''
+@app.route('/points')
+def points():
+	return render_template('points.html')
 
 
 if __name__ == '__main__':

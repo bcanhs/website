@@ -2,6 +2,16 @@
 {% block title %}My Sessions{% endblock %}
 {% block content %}
 <div class="container center spacer">
+	{% if not data %}
+	<div class="row center">
+		<div class="col-md-12">
+			<h1>Uh Oh!</h1>
+			<h2>You have no sessions entered.</h2>
+			<h2>Add sessions <a href="/add">here</a></h2>
+		</div>
+	</div>
+	{% endif %}
+
 	{% for session in data %}
 	<div class="row center">
 		<div class="col-md-4"></div>
