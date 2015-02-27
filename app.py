@@ -231,9 +231,9 @@ def points():
 def officers():
 	return render_template('officers.html')
 
-@app.route('/meeting-minutes')
-def minutes():
-	return render_template('minutes.html')
+# @app.route('/meeting-minutes')
+# def minutes():
+# 	return render_template('minutes.html')
 
 @app.route('/officer-videos')
 def officerVideos():
@@ -242,10 +242,6 @@ def officerVideos():
 @app.route('/requirements')
 def requirements():
 	return render_template('requirements.html')
-
-@app.route('/pillars')
-def pillars():
-	return render_template('pillars.html')
 
 @app.route('/bylaws')
 def bylaws():
