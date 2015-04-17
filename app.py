@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, session
 import jinja2
 from pymongo import *
@@ -246,6 +247,10 @@ def requirements():
 @app.route('/bylaws')
 def bylaws():
 	return render_template('bylaws.html')
+
+@app.route('/signoff-sheet')
+def sheet():
+	return redirect('https://drive.google.com/file/d/0B-b_N1cpnpZ7WHAwcy1zd3ZaUmc/view?usp=sharing')
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
