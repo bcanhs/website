@@ -75,17 +75,30 @@ def view_subject(subject):
 	wednesday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
 	thursday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
 	friday = {'1-3':[],'4-6':[],'7-9':[],'10-12':[],'13-15':[],'16-18':[],'19-21':[],'22-24':[],'25-27':[]}
+	if subject_data == None:
+		return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,
+			wednesday=wednesday,thursday=thursday,friday=friday)
 	for ses in subject_data:
-		if ses['monday'] != '':
-			monday[ses['monday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
-		if ses['tuesday'] != '':
-			tuesday[ses['tuesday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
-		if ses['wednesday'] != '':
-			wednesday[ses['wednesday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
-		if ses['thursday'] != '':
-			thursday[ses['thursday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
-		if ses['friday'] != '':
-			friday[ses['friday']].append(ses['tutor']+'-'+ses['tutor_username']+'@bergen.org')
+		if str(ses['monday']) != '':
+			ses['monday'] = str(ses['monday']).split(', ')
+			for s in ses['monday']: 
+				monday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+		if str(ses['tuesday']) != '':
+			ses['tuesday'] = str(ses['tuesday']).split(', ')
+			for s in ses['tuesday']:
+				tuesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+		if str(ses['wednesday']) != '':
+			ses['wednesday'] = str(ses['wednesday']).split(', ')
+			for s in ses['wednesday']:
+				wednesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+		if str(ses['thursday']) != '':
+			ses['thursday'] = str(ses['thursday']).split(', ')
+			for s in ses['thursday']:
+				thursday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+		if str(ses['friday']) != '':
+			ses['friday'] = str(ses['friday']).split(', ')
+			for s in ses['friday']:
+				friday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
 	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,
 			wednesday=wednesday,thursday=thursday,friday=friday)
 
