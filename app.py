@@ -80,25 +80,45 @@ def view_subject(subject):
 			wednesday=wednesday,thursday=thursday,friday=friday)
 	for ses in subject_data:
 		if str(ses['monday']) != '':
-			ses['monday'] = str(ses['monday']).split(', ')
+			ses['monday'] = str(ses['monday']).split(',')
 			for s in ses['monday']: 
-				monday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				s = s.strip()
+				try:
+					monday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				except KeyError:
+					pass
 		if str(ses['tuesday']) != '':
 			ses['tuesday'] = str(ses['tuesday']).split(', ')
 			for s in ses['tuesday']:
-				tuesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				s = s.strip()
+				try:
+					tuesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				except KeyError:
+					pass
 		if str(ses['wednesday']) != '':
 			ses['wednesday'] = str(ses['wednesday']).split(', ')
 			for s in ses['wednesday']:
-				wednesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				s = s.strip()
+				try:
+					wednesday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				except KeyError:
+					pass
 		if str(ses['thursday']) != '':
 			ses['thursday'] = str(ses['thursday']).split(', ')
 			for s in ses['thursday']:
-				thursday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				s = s.strip()
+				try:
+					thursday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				except KeyError:
+					pass
 		if str(ses['friday']) != '':
 			ses['friday'] = str(ses['friday']).split(', ')
 			for s in ses['friday']:
-				friday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				s = s.strip()
+				try:
+					friday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
+				except KeyError:
+					pass
 	return render_template('view_subject.html',signed_in=logged_in(),subject=subject, monday=monday,tuesday=tuesday,
 			wednesday=wednesday,thursday=thursday,friday=friday)
 
