@@ -284,6 +284,10 @@ def bylaws():
 def sheet():
 	return redirect('https://drive.google.com/file/d/0B-b_N1cpnpZ7WHAwcy1zd3ZaUmc/view?usp=sharing')
 
+@app.route('/calendar')
+def calendar():
+	return render_template('calendar.html')
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	debug = True
