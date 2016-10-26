@@ -273,7 +273,7 @@ def officerVideos():
 	return render_template('officer-videos.html')
 
 @app.route('/application-closed')
-def officerVideos():
+def applicationClosed():
 	return render_template('application-closed.html')
 
 @app.route('/requirements')
@@ -289,7 +289,7 @@ def sheet():
 	return redirect('https://drive.google.com/file/d/0B-b_N1cpnpZ7WHAwcy1zd3ZaUmc/view?usp=sharing')
 
 @app.route('/communityservice')
-def calendar():
+def communityservice():
 	return render_template('communityservice.html')
 
 @app.route('/calendar')
