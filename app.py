@@ -81,7 +81,7 @@ def view_subject(subject):
 	for ses in subject_data:
 		if str(ses['monday']) != '':
 			ses['monday'] = str(ses['monday']).split(',')
-			for s in ses['monday']: 
+			for s in ses['monday']:
 				s = s.strip()
 				try:
 					monday[str(s)].append(str(ses['tutor'])+'-'+str(ses['tutor_username'])+'@bergen.org')
@@ -271,6 +271,10 @@ def officers():
 @app.route('/officer-videos')
 def officerVideos():
 	return render_template('officer-videos.html')
+
+@app.route('/application-closed')
+def officerVideos():
+	return render_template('application-closed.html')
 
 @app.route('/requirements')
 def requirements():
