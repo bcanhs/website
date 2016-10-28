@@ -292,6 +292,10 @@ def sheet():
 def communityservice():
 	return render_template('communityservice.html')
 
+@app.route('/tutorinfo')
+def communityservice():
+	return render_template('tutorinfo.html')
+
 @app.route('/calendar')
 def calendar():
 	return render_template('calendar.html')
