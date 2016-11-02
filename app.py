@@ -293,7 +293,7 @@ def communityservice():
 	return render_template('communityservice.html')
 
 @app.route('/tutorinfo')
-def communityservice():
+def tutorinfo():
 	return render_template('tutorinfo.html')
 
 @app.route('/calendar')
